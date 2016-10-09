@@ -1,0 +1,20 @@
+* { font-size:12px; }
+
+/* 表单相关 */
+FIELDSET { padding:4px; border:1px dashed #3399ff; margin:4px; }
+LEGEND { color:#880000; font-weight:800; background-color:#FFF; }
+DL.form { margin:0px; padding:2px; }
+DL.form DT { width:75px; color:#3399ff; text-align:right; float:left; margin:0px; padding:2px; *padding-bottom:0px; *padding-top:0px; white-space:nowrap; }
+DL.form DD { float:left; margin:0px; padding:2px; *padding-bottom:0px; *padding-top:0px; }
+DL.form BR { clear:both; display:block; width:10px; height:10px; border:1px solid red; }
+DL.form DIV { clear:both; width:100%; height:0px; padding:0px; margin:0px; border:0px solid red; font-size:0px; }
+
+FORM { padding:0px; margin:0px; }
+INPUT[TYPE=TEXT] { border:1px solid #AAA; }
+INPUT[TYPE=PASSWORD] { border:1px solid #AAA; }
+INPUT[TYPE=BUTTON] { border:1px solid #06F; background-color:#3399ff; color:#FFFFFF; }
+INPUT[TYPE=BUTTON]:hover { color:#FF0; }
+SELECT { border:1px solid #AAA; }
+TEXTAREA { border:1px solid #AAA; }
+
+DIV.dialogBox { padding:10px; overflow:visible; border:4px solid #39f; background-color:#FFF; }

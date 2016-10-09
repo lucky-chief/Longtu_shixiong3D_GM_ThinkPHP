@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>会员组列表</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+/* 当鼠标移到表格上是，当前一行背景变色 */
+$(document).ready(function(){
+            $(".data_list tr td").mouseover(function(){
+                $(this).parent().find("td").css("background-color","#ffeab3");
+            });
+      })
+      /* 当鼠标在表格上移动时，离开的那一行背景恢复 */
+      $(document).ready(function(){ 
+            $(".data_list tr td").mouseout(function(){
+                var bgc = $(this).parent().attr("bg");
+                $(this).parent().find("td").css("background-color",bgc);
+            });
+      })
+      $(document).ready(function(){ 
+            var color="#F4F6F9"
+            $(".data_list tr:odd td").css("background-color",color);  //改变偶数行背景色
+            /* 把背景色保存到属性中 */
+            $(".data_list tr:odd").attr("bg",color);
+            $(".data_list tr:even").attr("bg","#fff");
+      })
+</script>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">会员组列表</div></td>
+      </tr>
+      <tr>
+        <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#e5e5e5">
+                <tr>
+                  <td><table width="100%" border="0" align="left" cellpadding="0" cellspacing="1" class="data_list">
+                      <thead>
+                        <th width="5%" height="40" bgcolor="#F2F2F2"><div align="center"><b>ID</b></div></th>
+                        <th width="9%" bgcolor="#F2F2F2"><div align="center"><b>分组名称</b></div></th>
+                        <th width="5%" bgcolor="#F2F2F2"><div align="center"><b>状态</b></div></th>
+                        <th width="7%" bgcolor="#F2F2F2"><div align="center"><b>上级分组</b></div></th>
+                        <th width="8%" bgcolor="#F2F2F2"><div align="center"><b>会员数</b></div></th>
+                        <th width="12%" bgcolor="#F2F2F2"><div align="center"><b>GM指令操作</b></div></th>
+                        <th width="9%" bgcolor="#F2F2F2"><div align="center"><b>用户管理</b></div></th>
+                        <th width="10%" bgcolor="#F2F2F2"><div align="center"><b>账号模块</b></div></th>
+                        <th width="10%" bgcolor="#F2F2F2"><div align="center"><b>权限管理</b></div></th>
+                        <th width="10%" bgcolor="#F2F2F2"><div align="center"><b>奖励发放</b></div></th>
+                        <th width="10%" bgcolor="#F2F2F2"><div align="center"><b>服务器管理</b></div></th>
+                        <th width="5%" bgcolor="#F2F2F2"><div align="center"><b>操作</b></div></th>
+                      </thead>
+                      <volist name="list" id="vo">
+                      <tr>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">{$vo.id}</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">{$vo.name}</div></td>
+                        <td height="30" bgcolor="#FFFFFF">
+                        <if condition="$vo.status eq 1"> 
+                        <div align="center" style="color:red">√</div>
+                        <else/>
+                        <div align="center" style="color:blue">×</div>
+                        </if>
+                        </td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">{$vo.pid}</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">{$vo.num}</div></td>
+                        <volist name="vo[node]" id="vt">
+                        <td height="30" bgcolor="#FFFFFF">
+                          <if condition="$vt eq 1"> 
+                          <div align="center" style="color:red">√</div>
+                          <else/>
+                          <div align="center" style="color:blue">×</div>
+                          </if>
+                        </td>
+                        </volist>
+                       <!-- <td height="30" bgcolor="#FFFFFF"><div align="center">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">×</div></td>-->
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">[ <a id="change" href="index.php?m=User&a=upd_usergroup&id={$vo.id}">修改</a> ]</div></td>
+                      </tr>
+                      </volist>
+                     <!-- <tr>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">2</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">游客</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">[ <a href="#">修改</a> ]</div></td>
+                      </tr>
+                      <tr>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">3</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">禁止访问</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">[ <a href="#">修改</a> ]</div></td>
+                      </tr>
+                      <tr>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">4</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">游客</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">0</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="red">√</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center" class="blue">×</div></td>
+                        <td height="30" bgcolor="#FFFFFF"><div align="center">[ <a href="#">修改</a> ]</div></td>
+                      </tr>-->
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,138 @@
+* { margin:0; padding:0; list-style:none; font-size:12px;}/*---该css reset仅用于demo，请自行换成适合您自己的css reset---*/
+html { height:100%;}
+body { height:100%; text-align:center; background-color:#f3f3f3;}
+img { border:0;}
+a { text-decoration:none;}
+a:hover { text-decoration:underline;}
+
+.centerDiv { display:inline-block; zoom:1; *display:inline; vertical-align:middle; text-align:left; width:620px; height:340px;}
+.hiddenDiv { height:100%; overflow:hidden; display:inline-block; width:1px; overflow:hidden; margin-left:-1px; zoom:1; *display:inline; *margin-top:-1px; _margin-top:0; vertical-align:middle;}
+.login_font01 { color:#686868;}
+.login_select select { height:22px; line-height:22px;}
+.login_name { width:140px; height:27px; line-height:27px; border:1px solid #c5c5c5; padding:0 8px;}
+.login_name2 { width:60px; height:27px; line-height:27px; border:1px solid #c5c5c5; padding:0 8px;}
+
+.m_left { background:url(../images/m_left_bj.gif) repeat-y; width:209px; float:left;}
+.m_li_01 a { font-weight:bold; color:#2c74b8;}
+.m_li_02 a { color:#333333;}
+.m_br {  border-bottom:1px solid #efeff0;}
+
+.m_10 { padding:10px 0;}
+.m_20 { padding:20px 0;}
+.m_2 { margin-top:2px; float:left; width:239px; height:50px;}
+
+.f_a a { color:#999999;}
+.f_b a { color:#ff9000;}
+
+.r_m20 { padding:20px; text-align:left;}
+
+.r_fonta { color:#494949; font-size:14px; font-weight:bold;}
+.r_fontb { color:#9e9e9e;}
+.ts { border:1px solid #afd3f2; background-color:#deeefa; margin:20px 0 0 0;}
+
+.r_m_20 { margin:20px 0 0 0;}
+.r_br { border:1px solid #cdcdcd; border-top:none;}
+
+.r_f { font-size:14px; font-weight:bold; color:#7e7e7e; padding-left:15px;}
+.r_pa { padding:20px;}
+/*left_div*/
+.m_left { background:url(../images/oss_01.png) repeat-y; width:209px; float:left; text-align:left;}
+.ml_log{ background:url(../images/gmt_05.png) no-repeat; width:145px; height:58px; margin:20px auto;}
+.ml_title{ background:url(../images/oss_08.png) no-repeat; width:196px; height:30px; line-height:30px; padding:5px 0px 0px 12px; cursor:pointer; color:#fff;}
+.ml_title_h{ background:url(../images/oss_21.png) no-repeat; color:#666;}
+.ml_title_span{  color:#666;}
+.ml_title span{ font-size:15px; font-family:"微软雅黑",Arial, Helvetica, sans-serif; font-weight:bold; position:relative; top:-3px; margin-left:6px;}
+.ml_title .span_col{ color:#fff;}
+/*树形菜单*/
+.st_tree{ width:240px; float:left;}
+.st_tree a{ text-decoration:none; }
+.st_tree a:hover{ color:#f33; 	text-decoration:underline;}
+.st_tree ul{ display:block;	padding:0; 	margin:0; clear:both;}
+.st_tree ul li{ font-size:13px; color:#222; line-height:26px; cursor:pointer;list-style:none; padding:0 0 3px 0px;}
+/* 子菜单的父节点 */
+.st_tree .folder{padding:0px 0 0 15px; clear:both; font-size:14px; color:#333333;line-height:26px; width:200px; height:26px; float:left; display:inline-block;}
+.st_tree .folder a{ padding-left:18px;background:url(../images/oss_19.png) no-repeat; color:#333;}
+.st_tree .folder a:hover{ padding-left:18px;background:url(../images/oss_19.png) no-repeat; color:#333; text-decoration:underline;}
+/* 展开的父节点 */
+.st_tree .open{  padding:0px 0 0 15px;  color:#ff6c00;}
+.st_tree .open a{ color:#2c74b8; font-weight:bold;background:url(../images/oss_12.png) no-repeat; padding-left:18px}
+.st_tree .open a:hover{ color:#2c74b8; font-weight:bold; text-decoration:underline; background:urlurl(../images/oss_12.png) no-repeat; padding-left:18px}
+.st_tree ul .show_li{ float:left; line-height:26px;}
+.st_tree ul .show_li a{color:#ff6c00; height:26px; line-height:26px; background:url(../images/oss_16.png) no-repeat right; padding-right:85px; margin-left:46px; display:block;}
+.st_tree ul .show_li a:hover{color:#ff6c00; text-decoration:underline; background:url(../images/oss_16.png) no-repeat right;}
+.st_tree ul .show_li .c_9{ color:#999; background:none;}
+.st_tree ul .show_li .c_9:hover{ color:#999; text-decoration:underline; background:none;}
+.clear{ clear:both;}
+/*login*/
+.login_left{ float:left; margin:100px 0px 0px 0px;}
+.login_left p{ margin:30px 0 0 75px; color:#686868;}
+.login_mid{ float:left; margin:0px 30px;}
+.login_right{ float:left; margin:100px 0px 0px 0px;}
+.login_right p{ margin-bottom:10px;}
+.login_right p span{ width:50px; height:20px; display:inline-block}
+.login_right p .button{ width:94px; height:28px; margin-left:50px;}
+.login_right input{ width:154px; height:27px; line-height:27px; text-indent:5px; border:1px solid #c5c5c5;}
+.login_right .login_y{ width:60px; height:27px; line-height:27px; margin-right:10px;}
+.select {FLOAT: left; display:inline; width:99px; height:28px;left: 165px; position: relative; top: -20px;}
+.text {FLOAT: left; }
+.text input{width:214px; padding-top:3px; height:17px; border:1px solid #b7d1eb;}
+DIV.selectbox-wrapper {	BORDER: #c5c5c5 1px solid; MARGIN-TOP: -3px;  WIDTH:97px;  POSITION: absolute; BACKGROUND-COLOR: #fff; TEXT-ALIGN: left;}
+DIV.selectbox-wrapper UL LI.current {COLOR: #fff; BACKGROUND-COLOR: #36c}
+DIV.selectbox-wrapper UL LI {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; WIDTH: 57px; CURSOR: pointer; LINE-HEIGHT: 20px; PADDING-TOP: 3px
+}
+.selectbox { border:none;  DISPLAY: block; line-height:28px; width:99px; CURSOR: pointer; HEIGHT:28px;  background:url(../images/select.png) no-repeat; text-indent:10px;}
+.btn{ float:left; display:inline; margin-left:105px; margin-top:2px;}
+/*right*/
+.r_name{ color:#2c74b8; font-size:14px;}
+
+
+
+#list1,#list2,#list3,#list4,#list5{ width:200px; display:block; float:left; }
+#list1 div.selected .title ,#list2 div.selected .title ,#list3 div.selected .title ,#list4 div.selected .title,#list5 div.selected .title,#list6 div.selected .title{ background:url(../images/oss_12.png) no-repeat 0 center; color:#2C74B8}
+#list1 div div,#list2 div div,#list3 div div,#list4 div div,#list5 div div,#list6 div div{
+ color: #222222;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 18px;
+    list-style: none outside none;
+    padding: 0 0 3px; width:200px;	
+}
+#list1 div.title,#list2 div.title,#list3 div.title,#list4 div.title,#list5 div.title,#list6 div.title{
+	background:url(../images/oss_19.png) no-repeat 0 center;
+    clear: both;
+    color: #333333;
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 0 0 18px;
+    width: 130px; margin-left:15px;
+}
+ .t_u{ display:block; float:left}
+ .t_u li a{ background:url(../images/oss_16.png) no-repeat right center;height: 31px;
+    line-height: 31px;
+    margin-left:15px;
+    padding-left: 20px; padding-right:17px;
+    width:150px; color:#333; text-decoration:none; display:block; font-size:12px}
+ .t_u li a:hover{ background:url(../images/oss_16.png) no-repeat right center; color:#ff6c00;}
+	
+#list1 div.selected,#list2 div.selected,#list3 div.selected,#list4 div.selected,#list5 div.selected{
+	border-bottom: none;
+}
+
+#wizard {
+	width: 200px;
+	border: 1px solid black;
+}
+#wizard .title {
+	background-color:#DDDDDD;
+}
+
+@media print {
+	.basic div, #navigation ul, #list2 dd, #list3 div{
+		display: block!important;
+		height: auto!important
+	}
+}

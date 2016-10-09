@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公告管理</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#save_notice').click(function(){
+	   
+	})
+	
+	$('#publish_notice').click(function(){
+	   if (confirm('确认发布公告吗？')) {
+	        window.location = '__APP__?m=Server&a=publish_notice'; 
+	   }
+	})				  
+})
+</script>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+     <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">公告管理</div></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td>
+              <form name="form1" action="__APP__?m=Server&a=save_notice" method="post">
+              <input type="hidden" name="id" value="{$list[0]['id']}" />
+              <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="left">
+                    <table width="900" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                      <td width="70" height="35"><div align="right">公告内容</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <textarea name="notice" id="notice" cols=70 rows=20>{$list[0]['notice']}</textarea>
+                      </div></td>
+                    </tr>
+                    <tr>
+                        <td width="70" height="35"></td>
+                        <td width="70" height="35"></td>
+                      <td height="35"><div align="left" class="r_m_20">
+                          <input type="submit"  id="save_notice" value="先保存" class="btn fj_ml" />
+                          <input type="button"  id="publish_notice" value="再发布" class="btn fj_ml" />
+                      </div></td>
+                    </tr>
+                  </table></form></td>
+                </tr>
+                
+                
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

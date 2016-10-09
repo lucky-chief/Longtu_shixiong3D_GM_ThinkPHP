@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>日志记录</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/My97DatePicker/WdatePicker.js"></script>
+<script language="javascript">
+ function mess(){
+	if(confirm("确认删除吗")){
+        return true;
+		}else{
+		return false;	
+		}
+	}
+</script>
+<script type="text/javascript">
+/* 当鼠标移到表格上是，当前一行背景变色 */
+$(document).ready(function(){
+            $(".data_list tr td").mouseover(function(){
+                $(this).parent().find("td").css("background-color","#ffeab3");
+            });
+      })
+      /* 当鼠标在表格上移动时，离开的那一行背景恢复 */
+      $(document).ready(function(){ 
+            $(".data_list tr td").mouseout(function(){
+                var bgc = $(this).parent().attr("bg");
+                $(this).parent().find("td").css("background-color",bgc);
+            });
+      })
+      $(document).ready(function(){ 
+            var color="#F4F6F9"
+            $(".data_list tr:odd td").css("background-color",color);  //改变偶数行背景色
+            /* 把背景色保存到属性中 */
+            $(".data_list tr:odd").attr("bg",color);
+            $(".data_list tr:even").attr("bg","#fff");
+      })
+</script>
+<style type="text/css">
+a{text-decoration:none; color:#999}
+a:hover{ color:#000}
+.pg{font-size:14px;}
+</style>
+</head>
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr> 
+</table>
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+    <tr>
+        <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+            <tr>
+                <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">操作日志查询</div></td>
+            </tr>
+            <tr>
+                <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+                    <tr>
+                        <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tr><td><table  border="0" cellpadding="5" cellspacing="5">
+                                 <form name="log" action="?m=User&a=showlog" method="post">
+                                    <tr>
+                                       <td width="60" height="35"><div align="right">选择区服</div></td>
+                                       <td width="6">&nbsp;</td>
+                                       <td width="100"><div align="left">
+                                          <select name="serverId" id="serverId" class="s_select">
+                                            <option value="0">查看全服记录</option>
+                                            <volist name="str" id="vo">
+                                            <option value="{$vo.id}" <if condition="$serverId eq $vo['id']">selected="selected"</if>>{$vo.name}</option>
+                                            </volist>
+                                            </select>
+                                         </div>
+                                         </td>
+                                         <td width="60">查询类型</td>
+                                         <td width="100">
+                                            <select id="selecttype" name="selecttype" class="s_select">
+                                               <optgroup label="基本指令">
+                                               <option value="1" <if condition="$selecttype eq '1'">selected="selected"</if>>GM指令操作</option>
+                                               </optgroup>
+                                               <optgroup label="邮件公告">
+                                               <option value="0" <if condition="$selecttype eq '0'">selected="selected"</if>>公告发送记录</option>
+                                               <option value="6" <if condition="$selecttype eq '6'">selected="selected"</if>>系统邮件日志</option>
+                                               </optgroup>
+                                               <optgroup label="经验经济属性">
+                                               <option value="4" <if condition="$selecttype eq '4'">selected="selected"</if>>在线操作日志</option>
+                                               </optgroup>
+                                               <optgroup label="活动与奖励">
+                                               <option value="2" <if condition="$selecttype eq '2'">selected="selected"</if>>在线活动记录</option>
+                                               <option value="7" <if condition="$selecttype eq '7'">selected="selected"</if>>限时活动记录</option>
+                                               <option value="3" <if condition="$selecttype eq '3'">selected="selected"</if>>奖励预约日志</option>
+                                               </optgroup>
+                                               <optgroup label="账号管理">
+                                               <option value="5" <if condition="$selecttype eq '5'">selected="selected"</if>>账号管理日志</option>
+                                               </optgroup>
+                                            </select>
+                                        </td>
+                                        <td width="65">开始时间</td>
+                                        <td width="160">
+                                            <input type="text" name="start" id="start" class="Wdate" style="line-height:25px; height:25px; width:200px;"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                        </td>
+                                        <td width="65">结束时间</td>
+                                        <td width="160">
+                                            <input type="text" name="end" id="end" class="Wdate" style="line-height:25px; height:25px; width:200px;"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+                                        </td>
+                                        <td width="100" align="left">
+                                            <input style="margin-left:20px;" type="submit"  id="info" value="日志查询" class="btn fj_ml"/>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr></tr>
+                                    <tr><table  width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#e5e5e5">
+                                      <tr><td>
+                                           <!--开始-->
+                                           <if condition="$show eq '0'">
+                                           <div id="GG">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="8%" height="35" >ID</th>
+                                              <th width="7%">公告ID</th>
+                                              <th width="15%">公告内容</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="11%">操作时间</th>
+                                              <th width="11%">开始时间</th>
+                                              <th width="11%">结束时间</th>
+                                              <th width="5%">间隔时间</th>
+                                              <th width="5%">动作</th>
+                                              <th width="7%">发送类型</th>
+                                              <th width="7%">展现方式</th>
+                                              
+                                           </thead>
+                                          <volist name="list" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.nId}</td>
+                                            <td align="left" style="padding-left:10px;">{$val.content|msubstr=10,15,'utf-8',false}</td>
+                                            <!--<td><a href="?m=User&a=announce_content&id={$val.id}">点击查看</a></td>-->
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td>
+                                            <td>{$val.time|date="Y-m-d H:i:s",###}</td>
+                                            <td>
+                                            <if condition="$val.startTime neq 0">
+                                            {$val.startTime|date="Y-m-d H:i:s",###}
+                                            </if>
+                                            </td>
+                                            <td>
+                                            <if condition="$val.endTime neq 0">
+                                            {$val.endTime|date="Y-m-d H:i:s",###}
+                                            </if>
+                                            </td>
+                                            <td>{$val.interval}&nbsp;(分)</td>
+                                            <td>{$val.action}</td>
+                                            <td>
+                                            <if condition="$val.noteType eq 0">
+                                            <font>即时发送</font>
+                                            <elseif condition="$val.noteType eq 1"/>
+                                            <font>定时发送</font>
+                                            <else/>
+                                            <font>循环发送</font>
+                                            </if>
+                                            </td>
+                                            <td>
+                                            <if condition="$val.showType eq 0">
+                                            <font>滚动公告</font>
+                                            <elseif condition="$val.showType eq 1"/>
+                                            <font>系统公告</font>
+                                            <else/>
+                                            <font>传闻公告</font>
+                                            </if>
+                                            </td>
+                                            
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                           <th colspan="13" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                          </thead>
+                                        </table></div>
+                                        </if>
+                                        <!--结束-->
+                                        <if condition="$show eq '1'">
+                                        <div id="GM">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="8%" height="35">ID</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="12%">角色名称</th>
+                                              <th width="5%">区服</th>
+                                              <th width="11%">操作时间</th>
+                                              <th width="8%">登录IP</th>
+                                              <th width="8%">执行操作</th>
+                                              <th width="12%">权限值</th>
+                                              <th width="11%">开始时间</th>
+                                              <th width="11%">结束时间</td>
+                                           </thead>
+                                          <volist name="list1" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td>
+                                            <td align="left" style="padding-left:25px;">{$val.playerName}</td>
+                                            <td>{$val.serverId}</td>
+                                            <td>{$val.time}</td>
+                                            <td>{$val.ip}</td>
+                                            <td>{$val.action}</td>
+                                            <td>{$val.role}</td>
+                                            <td>{$val.startTime}</td>
+                                            <td>{$val.endTime}</td>
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                            <th colspan="11" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                          </thead>
+                                        </table></div>
+                                        </if>
+                                        <!--结束-->
+                                        <if condition="$show eq '2'">
+                                        <div id="HD">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="7%" height="35">ID</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="5%">区服ID</th>
+                                              <th width="8%">活动类型</th>
+                                              <th width="5%">操作</th>
+                                              <th width="9%">IP地址</th>
+                                              <th width="10%">操作时间</th>
+                                              <th width="6%">时间类型</th>
+                                              <th width="10%">开始时间</th>
+                                              <th width="10%">结束时间</th>
+                                              <th width="5%">真气</th>
+                                              <th width="5%">经验</th>
+                                              <th width="5%">图标ID</th>
+                                              
+                                           </thead>
+                                          <volist name="list2" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td> 
+                                            <td>{$val.serverid}</td>
+                                            <td>
+                                            <if condition="$val.ActivityType eq '1'">多倍经验</if>
+                                            <if condition="$val.ActivityType eq '4'">黄钻充值</if>
+											<if condition="$val.ActivityType eq '5'">黄钻礼包</if>
+											<if condition="$val.ActivityType eq '6'">蓝钻充值</if>
+											<if condition="$val.ActivityType eq '7'">蓝钻礼包</if>
+                                            <if condition="$val.ActivityType eq '8'">页面蓝钻</if> 
+											</td>
+                                            <td>{$val.action}</td>
+                                            <td>{$val.ip}</td>
+                                            <td>{$val.creatDate}</td>
+                                            <td>
+                                            <if condition="$val.timeType eq '1'">阶段型</if>
+                                            <if condition="$val.timeType eq '2'">周期型</if>
+                                            </td>
+                                            <td>{$val.startDate}</td>
+                                            <td>{$val.endDate}</td>
+                                            <td>{$val.addPre1}</td>
+                                            <td>{$val.addPre2}</td>
+                                            <td>{$val.isshow}</td>
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                             <th colspan="14" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                          </thead>
+                                        </table></div>
+                                        </if>
+                                        <!--结束-->
+                                        <if condition="$show eq '3'">
+                                        <div id="REW">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="7%" height="35">ID</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="6%">操作</th>
+                                              <th width="5%">区服ID</th>
+                                              <th width="10%">IP地址</th>
+                                              <th width="11%">操作时间</th>
+                                              <th width="17%">标题</th>
+                                              <th width="25%">内容</th>
+                                              <th width="5%">附件</th>
+                                           </thead>
+                                          <volist name="list3" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td>
+                                            <td>{$val.action}</td>
+                                            <td>{$val.serverId}</td>
+                                            <td>{$val.ip}</td>
+                                            <td>{$val.time}</td>
+                                            <td align="left" style="padding-left:15px;">{$val.title}</td>
+                                            <td align="left" style="padding-left:15px;">{$val.content|msubstr=0,21,'utf-8',true}</td>
+                                            <td>查看</td>
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                             <th colspan="11" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                          </thead>
+                                        </table></div>
+                                        </if>
+                                        <if condition="$show eq '4'">
+                                        <div id="OL">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="7%" height="35">ID</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="12%">角色名称</th>
+                                              <th width="6%">区服</th>
+                                              <th width="11%">操作时间</th>
+                                              <th width="10%">登录IP</th>
+                                              <th width="8%">属性名称</th>
+                                              <th width="10%">增加数量</th>
+                                              <th width="22%">备用</th>
+                                           </thead>
+                                          <volist name="list1" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td>
+                                            <td align="left" style="padding-left:25px;">{$val.playerName}</td>
+                                            <td>{$val.serverId}</td>
+                                            <td>{$val.time}</td>
+                                            <td>{$val.ip}</td>
+                                            <td>{$val.type}</td>
+                                            <td><font color="red"><B>{$val.num}</B></font></td>
+                                            <td></td>
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                            <th colspan="11" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                          </thead>
+                                        </table></div>
+                                        </if>
+                                        <if condition="$show eq '5'">
+                                        <div id="HD">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="7%" height="35">ID</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="10%">操作</th>
+                                              <th width="11%">操作时间</th>
+                                              <th width="10%">登录IP</th>
+                                              <th width="8%">UserId</th>
+                                              <th width="12%">UserName</th>
+                                              <th width="15%">昵称</th>
+                                              <th width="8%">状态</th>
+                                              
+                                           </thead>
+                                          <volist name="list2" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td>
+                                            <td>{$val.action}</td>
+                                            <td>{$val.time}</td>
+                                            <td>{$val.ip}</td>
+                                            <td>{$val.userId}</td>
+                                            <td>{$val.userName}</td>
+                                            <td>{$val.nickName}</td>
+                                            <td>{$val.status}</td>
+                                            
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                            <th colspan="10" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                           </thead>
+                                        </table></div>
+                                        </if>
+                                        <!--结束-->
+                                        <if condition="$show eq '6'">
+                                        <div id="EM">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="7%" height="35">ID</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="10%">收件人</th>
+                                              <th width="5%">区服ID</th>
+                                              <th width="10%">操作时间</th>
+                                              <th width="9%">登录IP</th>
+                                              <th width="7%">操作</th>
+                                              <th width="10%">过期时间</th>
+                                              <th width="10%">标题</th>
+                                              <th width="14%">内容</th>
+                                              <th width="4%">附件</th>       
+                                           </thead>
+                                          <volist name="list2" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td>
+                                            <td>{$val.playerName}</td>
+                                            <td>{$val.serverId}</td>
+                                            <td>{$val.time}</td>
+                                            <td>{$val.ip}</td>
+                                            <td>{$val.action}</td>
+                                            <td>{$val.overTime}</td>
+                                            <td>{$val.title|msubstr=0,12,'utf8',true}</td>
+                                            <td>{$val.content|msubstr=0,14,'utf8',true}</td>
+                                            <td><a href="index.php?m=User&a=showAttach&str={$val.attach}">查看</a></td>
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                            <th colspan="12" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                          </thead>
+                                        </table></div>
+                                        </if>
+                                        <!--限时活动-->
+                                       <if condition="$show eq '7'">
+                                        <div id="HD">
+                                           <table  width="100%" border="0" id="result" cellpadding="1" cellspacing="1" class="data_list">
+                                           <thead bgcolor="#F2F2F2">
+                                              <th width="7%" height="35">ID</th>
+                                              <th width="5%">GMID</th>
+                                              <th width="9%">GM昵称</th>
+                                              <th width="5%">区服ID</th>
+                                              <th width="7%">活动ID</th>
+                                              <th width="10%">操作</th>
+                                              <th width="9%">IP地址</th>
+                                              <th width="12%">操作时间</th>
+                                              <th width="12%">开始时间</th>
+                                              <th width="12%">结束时间</th>
+                                              <th width="12%">失效时间</th>
+
+                                           </thead>
+                                          <volist name="list2" id="val">
+                                           <tr height="28" bgcolor="#FFFFFF">
+                                            <td>{$val.id}</td>
+                                            <td>{$val.gmId}</td>
+                                            <td>{$val.gmName}</td> 
+                                            <td>{$val.serverId}</td>
+                                            <td>{$val.activityId}</td>
+                                            <td>{$val.action}</td>
+                                            <td>{$val.ip}</td>
+                                            <td>{$val.time}</td>
+                                            <td>{$val.startTime}</td>
+                                            <td>{$val.endTime}</td>
+                                            <td>{$val.overTime}</td>
+                                          </tr>
+                                          </volist>
+                                          <thead bgcolor="#DBE6E8">
+                                             <th colspan="14" height="30" class="pg"><div class="green-black">{$page}</div></th>
+                                          </thead>
+                                        </table></div>
+                                        </if>
+                                        </td></tr>
+                                      </table>
+                                      </tr>
+                                      </form>
+                              </table></td></tr>
+                        </table></td>
+                    </tr>
+                </table></td>
+            </tr>
+        </table></td></tr>
+</table>
+</body>
+</html>

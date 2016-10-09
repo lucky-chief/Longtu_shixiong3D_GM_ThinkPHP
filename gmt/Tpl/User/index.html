@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>玩家信息查询</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+ function show(){
+	if(confirm("确认删除吗")){
+        return true;
+		}else{
+		return false;	
+		}
+	}
+</script>
+<script type="text/javascript">
+/* 当鼠标移到表格上是，当前一行背景变色 */
+$(document).ready(function(){
+            $(".data_list tr td").mouseover(function(){
+                $(this).parent().find("td").css("background-color","#ffeab3");
+            });
+      })
+      /* 当鼠标在表格上移动时，离开的那一行背景恢复 */
+      $(document).ready(function(){ 
+            $(".data_list tr td").mouseout(function(){
+                var bgc = $(this).parent().attr("bg");
+                $(this).parent().find("td").css("background-color",bgc);
+            });
+      })
+      $(document).ready(function(){ 
+            var color="#F4F6F9"
+            $(".data_list tr:odd td").css("background-color",color);  //改变偶数行背景色
+            /* 把背景色保存到属性中 */
+            $(".data_list tr:odd").attr("bg",color);
+            $(".data_list tr:even").attr("bg","#fff");
+      })
+</script>
+<style type="text/css">
+a{text-decoration:none; color:#999}
+a:hover{ color:#000}
+</style>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr> 
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">会员组列表</div></td>
+      </tr>
+      <tr>
+        <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#e5e5e5">
+                <tr>
+                  <td>
+                  	<table width="100%" border="0" align="left" cellpadding="0" cellspacing="1" class="data_list">
+                      <thead>
+                        <th width="5%" height="35" bgcolor="#F2F2F2"><div align="center">ID</div></th>
+                        <th width="7%" bgcolor="#F2F2F2"><div align="center">用户名称</div></th>
+                        <th width="6%" bgcolor="#F2F2F2"><div align="center">昵称</div></th>
+                        <th width="7%" bgcolor="#F2F2F2"><div align="center">组名称</div></th>
+                        <th width="9%" bgcolor="#F2F2F2"><div align="center">最后登录IP</div></th>
+                        <th width="11%" bgcolor="#F2F2F2"><div align="center">最后登录时间</div></th>
+                        <th width="9%" bgcolor="#F2F2F2"><div align="center">真实姓名</div></th>
+                        <th width="16%" bgcolor="#F2F2F2"><div align="center">邮箱</div></th>
+                        <th width="15%" bgcolor="#F2F2F2"><div align="center">备注</div></th>
+                       
+                        <th width="7%" bgcolor="#F2F2F2"><div align="center">登录次数</div></th>
+                        <th width="8%" bgcolor="#F2F2F2"><div align="center">操作选项</div></th>
+                      </thead>
+                      <volist name="list" id="vo">
+                      <tr height="28" bgcolor="#FFFFFF">
+                        <td><div align="center">{$vo.id}</div></td>
+                        <td><div align="center">{$vo.username}</div></td>
+                        <td><div align="center">{$vo.nickname}</div></td>
+                        <td><div align="center" style="color:red">{$vo.role_name}</div></td>
+                        <td><div align="center">{$vo.last_login_ip}</div></td>
+                        <td><div align="center">{$vo.last_login_time}</div></td>
+                        <td><div align="center">{$vo.realname}</div></td>
+                       
+                        <td><div align="center">{$vo.email}</div></td>
+                         <td><div align="center">{$vo.remark}</div></td>
+                        <td><div align="center" style="color:red">{$vo.login_count}</div></td>
+                        <td><div align="center">[ <a href="index.php?m=User&a=upd_user&id={$vo.id}">修改</a> ]&nbsp;[ <a href="index.php?m=User&a=del_user&id={$vo.id}" onclick="return show()">删除</a> ]</div></td>
+                      </tr>
+                     </volist>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

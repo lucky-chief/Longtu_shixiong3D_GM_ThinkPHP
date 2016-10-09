@@ -1,0 +1,40 @@
+html {font-size:12px; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, hr {	margin:0;	padding:0}
+body {	line-height:1.333;	font-size:12px;}
+ul{ padding:0px; margin:0px;}
+li{ list-style:none;padding:0px; margin:0px; }
+a {	color:#3E3E3E; text-decoration:none;}
+a:hover {	text-decoration:none}
+.layout_m {	background-color:#fff}
+.layout_m .body {	width:960px;	margin:0 auto}
+.layout_lm .left_col {	width:200px;	float:left;	background-color:#F0F0F0}
+.layout_lm .main {	margin-left:243px}
+.layout_mr .right_col {	float:right;	width:240px}
+.layout_mr .main {	margin-right:270px}
+.layout_lm .body .left_col {	background:none;	overflow:hidden}
+.menu_level3 {	background-color:#fff;	font-family:Arial, Helvetica, sans-serif; overflow:hidden;*zoom:1}
+.menu_level3 li {*zoom:1}
+.menu_level3 li h4 {	position:relative}
+.menu_level3 li h4 a { font-weight:bold; display:block;	height:33px;	line-height:31px;*line-height:33px;	text-indent:20px;	font-size:14px;	border-top:1px solid #E7E7E7}
+.menu_level3 li h4 a.current, .menu_level3 li h4 a:hover {	color:#FFF;	font-weight:bold;	border-top:1px solid #2275AC;	background-color:#43A5E0;	background:-webkit-gradient(linear, 0 0, 0 100%, from(#43A5E0), to(#0A86D1));	background:-moz-linear-gradient(top, #43A5E0, #0A86D1);	background:-o-linear-gradient(top, #43A5E0, #0A86D1);filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#43A5E0', EndColorStr='#0A86D1');	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorStr='#43A5E0', EndColorStr='#0A86D1')"}
+.menu_level3 li h4 a:hover {	font-weight:bold}
+.menu_level3 li h4 a .ico {	position:absolute;	right:19px;	top:12px;	top:11px\9}
+.menu_level3 li ul {padding-left:25px;	padding-top:0;	display:none;	padding-bottom:12px;*zoom:1}
+.menu_level3 li li {padding-top:9px;	padding-bottom:0;	position:relative;*zoom:1; line-height:20px;}
+.menu_level3 .ico_li {	background-image:url(../images/open_platform_wiki.png);	background-position:-216px 0;	width:13px;	height:12px}
+.menu_level3 li a.current .ico_li, .menu_level3 li h4 a:hover .ico_li {	background-image:url(../images/open_platform_wiki.png);	background-position:-216px -17px}
+.menu_level3 li li .ico_li {	position:absolute;	right:16px;	top:13px}
+.menu_level3 li li .ico_li {	background-image:url(../images/open_platform_wiki.png);	background-position:-216px -34px;	width:4px;	height:8px;	display:none}
+.menu_level3 li li li .ico_li {	right:21px}
+.menu_level3 li li.current h5 .ico_li, .menu_level3 li li h5 a:hover .ico_li, .menu_level3 li li h5 a.current .ico_li, .menu_level3 li li li a.current .ico_li, .menu_level3 li li a:hover .ico_li {	background-image:url(../images/open_platform_wiki.png);	background-position:-233px 0;	display:block}
+.menu_level3 li li .current, .menu_level3 li li a:hover {	color:#2F8AB5}
+.menu_level3 li li h5 {font-weight:normal;	padding-left:14px;	cursor:pointer}
+.menu_level3 li li h5 a {	display:block;	cursor:pointer; font-size:12px;}
+.menu_level3 li li h5.hassub, .menu_level3 li li h5.subopen {	padding-left:0}
+.ico_hassub {	width:9px; display:inline-block;	height:9px;	background-image:url(../images/open_platform_wiki.png);	background-position:-233px -17px}
+.ico_subopen, .subopen .ico_hassub {	width:9px;	height:9px;	background-image:url(../images/open_platform_wiki.png);	background-position:-233px -34px}
+.menu_level3 li li h5 .ico {	margin-right:5px;	vertical-align:0}
+.menu_level3 li li.current a {	color:#2F8AB5;	display:block}
+.menu_level3 li ul ul {	padding-left:24px;	padding-bottom:0}
+.menu_level3 li ul ul li {	padding-bottom:0;	padding-top:9px}
+.crent_img {  border: medium none; margin-right: 5px;  position: relative;  top: 4px;}

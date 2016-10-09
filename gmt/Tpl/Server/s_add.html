@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加管理员</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#s_add').click(function(){
+	   var id = $('#id').val();
+	   var db_pwd = $('#db_pwd').val();
+	   var name    = $('#name').val();
+	   var db_user = $('#db_user').val();
+	   var db_host = $('#db_host').val();
+	   var db_port = $('#db_port').val();
+	   var db_name = $('#db_name').val();
+	   var game_url= $('#game_url').val();
+	   var game_port= $('#game_port').val();
+	   var gmt_port = $('#gmt_port').val();
+        
+       if (id == "" || isNaN(parseInt(id))) {
+           alert("服务器id必须是数字！");
+           return false; 
+       }
+	   if(game_url==""){
+		   alert("服务器IP不能为空");
+		   return false;
+	   }
+	   if(game_port==""){
+		   alert("服务器端口不能为空");
+		   return false;
+	  }
+	  if(gmt_url==""){
+		   alert("gmt IP不能为空");
+		   return false;
+	   }
+	   if(gmt_port==""){
+		   alert("gmt端口不能为空");
+		   return false;
+	  }
+	   var  portArr = game_port.split('|');
+	   for (var i = 0; i < portArr.length; ++ i) {
+	       if (isNaN(portArr[i])) {
+	           alert('服务器端口必须是数字,多个端口用|隔开'); 
+	           return;
+	       }
+	   }
+	   if(gmt_port==""){
+		   alert("gmt端口不能为空");
+		   return false;
+	   }
+	   if(name==""){
+		   alert("服务器名称不能为空");
+		   return false;
+		  }
+	  
+	   if(db_user==""){
+		   alert("数据库账号名称不能为空");
+		   return false;
+		  }
+	   if(db_pwd==""){
+		   alert("数据库密码不能为空");
+		   return false;
+		  }
+	   if(db_host==""){
+		   alert("数据库地址不能为空");
+		   return false;
+		  }
+	   if(db_port==""){
+		   alert("数据库端口不能为空");
+		   return false;
+		  }
+	   if(db_name==""){
+		   alert("数据库名称不能为空");
+		   return false;
+		  }
+	})					  
+})
+</script>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">增加服务器配置</div></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td>
+              <form name="form1" action="__APP__?m=Server&a=s_add" method="post">
+              <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="left"><table width="900" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">服务器id</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="id" id="id"  class="text_name"/>
+                      </div></td>
+                    </tr>
+                     <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">服务器名称</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="name" id="name"  class="text_name"/>
+                      </div></td>
+                    </tr>
+					
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">服务器IP</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="game_url" id="game_url"  class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">服务器端口</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="game_port" id="game_port"  class="text_name"/>多个端口请用 | 隔开
+                      </div></td>
+                    </tr>
+                    
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">GMT IP</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="gmt_url" id="gmt_url"  class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">GMT端口</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="gmt_port" id="gmt_port"  class="text_name"/>
+                      </div></td>
+                    </tr>
+                    
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">游戏库地址</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="db_host" id="db_host" class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">游戏库端口</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="db_port" id="db_port" class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">游戏库名称</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="db_name" id="db_name" class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">游戏库账号</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="db_user" id="db_user"  class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red">游戏库密码</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="db_pwd" id="db_pwd" class="text_name"/>
+                      </div></td>
+                    </tr>
+                     <tr>
+                      <td width="70" height="35"><div align="right">日志库地址</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="log_host" id="log_host" class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right">日志库端口</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="log_port" id="log_port" class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right">日志库名称</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="log_name" id="log_name" class="text_name"/>
+                      </div></td>
+                    </tr>
+                     <tr>
+                      <td width="70" height="35"><div align="right">日志库账号</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <input type="text" name="log_user" id="log_user"  class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right">日志库密码</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="log_pwd" id="log_pwd" class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right">备注信息</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" name="remark" id="remark" class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                        <td width="70" height="35"></td>
+                      <td width="10">&nbsp;</td>
+                      <td height="35"><div align="left" class="r_m_20">
+                          <input style="margin-left:0px;" type="submit"  id="s_add" value="增加" class="btn fj_ml" />
+                      </div></td>
+                    </tr>
+                  </table></td>
+                </tr>              
+              </table></form></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+//邮件发送
+$(document).ready(function(){
+		$('#sendMail').click(function(){
+			//收件人
+			var dstName = $('#dstName').val();
+			//过期时间
+			var endTime = $('#endtime').val();
+			//标题
+			var title = $('#title').val();
+			//发件人
+			var srcName = $('#srcName').val();
+			//内容
+			var content = $('#content').val();
+			//附件
+			var length =$('#attach > option').length;
+			var attach="";
+			for(j=0;j<$('#attach > option').length;j++){
+				if(j==length-1){
+				   attach=attach +$('#attach > option').eq(j).val();
+				}else{
+				   attach=attach +$('#attach > option').eq(j).val()+'@';
+				}
+			}
+            //邮件类型
+			var mailType = $('#mailType').val();
+			//附件类型
+			var attachType = $('#attachType').val();
+			//物品模版ID
+			var itemId = $('#itemId').val();
+			//物品数量
+			var itemAmount = $('#itemAmount').val();
+			var finance = $('#finance').val();
+			var superMoney = $('#superMoney').val();
+			//是否绑定
+			var bound = $('#bound').val();
+			
+			  if(dstName==""){
+				  alert("收件人不能为空！"); 
+				  $("#dstName").focus(); 
+				   return false; 
+				  }
+
+			if(title==""){
+				  alert("标题不能为空！"); 
+				  $("#title").focus(); 
+				   return false; 
+				  }
+			if(srcName==""){
+				  alert("发件人不能为空！"); 
+				  $("#srcName").focus(); 
+				   return false; 
+				  }
+				  
+			 if(content==""){
+				  alert("消息内容不能为空！"); 
+				  $("#textarea").focus(); 
+				   return false; 
+				  }
+            server=$('#serverlist').val();
+			   $.post("?m=Gmemail&a=sendMail",{"dstName":dstName,"endTime":endTime,"mailType":mailType,"title":title,"srcName":srcName,"content":content,"superMoney":superMoney,"finance":finance,"attach":attach,"action":"sendFunctionMail","server":server},function(data){
+				  alert(data);	  
+				 }),"json"})
+		})
+
+//附件添加
+$(document).ready(function(){
+		$('#addAttach').click(function(){
+            var length =$('#attach > option').length;
+			if(length >= 7){
+				alert("最多只能添加7个附件");
+				return false;
+			}
+			var att = new Array();
+			//获取附件信息
+			att['attachType'] = $("#attachType").val();
+			att['itemId']     = $("#itemId").val();
+			att['itemAmount'] = $("#itemAmount").val();
+			
+			//物品数量判断
+			
+			 var att_mess = "类型：物品，编号："+att['itemId']+"，数量："+att['itemAmount'];
+			 $('#attach').append('<option value='+att_mess+' >'+att_mess+'</option>');
+
+									  
+    })
+
+})
+var i=-1;
+//附件删除
+$(document).ready(function(){
+		$('#deleteAttach').click(function(){						  
+			if(i<0)
+		   return false;
+			$('#attach > option').eq(i).remove();
+			i= -1;
+         })
+		 $('#attach').click(function(){i=$('#attach > option:selected').index()});
+
+
+})
+//附件修改
+$(document).ready(function(){
+		$('#modifyAttach').click(function(){
+		   if(i<0)
+		   return false;
+			att['attachType'] = $("#attachType").val();
+			att['itemId']     = $("#itemId").val();
+			att['itemAmount'] = $("#itemAmount").val();
+			//物品数量判断
+			
+			att_mess = "类型：物品，编号："+att['itemId']+"，数量："+att['itemAmount'];
+			i= -1;
+         })
+		 
+})
+</script>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+
+  
+</table>
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">发系统邮件</div></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+
+                  <tr>
+                  <td align="left"><table width="900" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                          <td width="92" height="35"><div align="right">选择区服</div></td>
+                          <td width="10">&nbsp;</td>
+                          <td colspan="2"><div align="left">
+                              <select id="serverlist" class="s_select">
+                                  <volist name="list" id="vo">
+                                    <option value="{$vo.id}">{$vo.name}</option>
+                                  </volist>
+                              </select>
+                          </div></td>
+                    </tr>
+                    <tr>
+                      <td width="69" height="35"><div align="right">收件人</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td width="421"><div align="left"><input type="text" id="dstName" class="text_name"/></div></td>
+                    </tr>
+                    <tr>
+                      <td width="69" height="35"><div align="right">标题</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" id="title"  class="text_name"/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="69" height="35"><div align="right">发件人</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" id="srcName"  class="text_name" value="系统"/>
+                      </div></td>
+                    </tr>
+					<tr>
+                      <td width="69" height="35"><div align="right">钻石</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" id="superMoney"  class="text_name" value=""/>
+                      </div></td>
+                    </tr>
+					<tr>
+                      <td width="69" height="35"><div align="right">其他货币</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <input type="text" id="finance"  class="text_name" value=""/>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="69" height="221" valign="top" class="fj_font"><div align="right">内容</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <label>
+                        <textarea name="textarea" id="content" cols="45" rows="5"  class="text_name text_name03"></textarea>
+                        </label>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="69" valign="top" class="fj_font02"><div align="right">附件</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <select id="attach" style="width: 700px" size=7>
+                        </select>
+                      </div></td>
+                    </tr>
+                  </table></td>
+                </tr>
+  
+                <tr>
+                  <td align="left"><table border="0" cellpadding="0" cellspacing="0" class="fj_sm">
+                    <tr>
+                      <td height="40" class="fj_sm_title"><div align="left">附件信息</div></td>
+                    </tr>
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="0" class="fj_mr">
+                        <tr>
+                          <td width="69" height="35"><div align="right">附件类型</div></td>
+                          <td width="10">&nbsp;</td>
+                          <td width="421"><div align="left">
+                            <select name="select2" id="attachType" class="s_select">
+                              <option value="2">物品</option>
+                            </select>
+                          </div></td>
+                        </tr>
+                        <tr>
+                          <td width="69" height="35"><div align="right">物品模板ID</div></td>
+                          <td width="10">&nbsp;</td>
+                          <td><div align="left">
+                              <input type="text" id="itemId" class="text_name"/>
+                          </div></td>
+                        </tr>
+                        <tr>
+                          <td width="69" height="35"><div align="right">物品数量</div></td>
+                          <td width="10">&nbsp;</td>
+                          <td><div align="left">
+                              <input type="text" id="itemAmount"  class="text_name"/>
+                          </div></td>
+                        </tr>
+                        <tr>
+                          <td height="35">&nbsp;</td>
+                          <td>&nbsp;</td>
+                          <td>
+                            <div align="left">
+                              <input type="button" name="button" id="addAttach" value="添加" class="fj_btn" />
+                              <input type="button" name="button2" id="modifyAttach" value="修改" class="fj_btn" />
+                              <input type="button" name="button3" id="deleteAttach" value="删除" class="fj_btn" />
+                              </div>
+                          </td>
+                        </tr>
+
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td height="60"><div align="left">
+                    <input type="button" name="button" id="sendMail" value="发送" class="btn" />
+                  </div></td>
+                </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+</body>
+</html>

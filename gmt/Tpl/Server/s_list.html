@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>玩家信息查询</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+ function show(){
+	if(confirm("确认删除吗")){
+        return true;
+		}
+		else{
+		    return false;	
+		}
+}
+ function publish(){
+	if(confirm("确认发布吗")){
+        return true;
+		}else{
+		return false;	
+		}
+ }	
+</script>
+<script type="text/javascript">
+/* 当鼠标移到表格上是，当前一行背景变色 */
+$(document).ready(function(){
+            $(".data_list tr td").mouseover(function(){
+                $(this).parent().find("td").css("background-color","#ffeab3");
+            });
+      })
+      /* 当鼠标在表格上移动时，离开的那一行背景恢复 */
+      $(document).ready(function(){ 
+            $(".data_list tr td").mouseout(function(){
+                var bgc = $(this).parent().attr("bg");
+                $(this).parent().find("td").css("background-color",bgc);
+            });
+      })
+      $(document).ready(function(){ 
+            var color="#F4F6F9"
+            $(".data_list tr:odd td").css("background-color",color);  //改变偶数行背景色
+            /* 把背景色保存到属性中 */
+            $(".data_list tr:odd").attr("bg",color);
+            $(".data_list tr:even").attr("bg","#fff");
+      })
+</script>
+<style type="text/css">
+a{text-decoration:none; color:#999}
+a:hover{ color:#000}
+.server{ margin-left:10px; font-family:Verdana, Geneva, sans-serif; font-weight:400}
+.DH{margin-left:10px;}
+</style>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">服务器列表&nbsp;&nbsp;&nbsp;&nbsp;[ <a href="index.php?m=Server&a=publish_server" onclick="return publish()">发布</a> ]</td>
+      </tr>
+      <tr>
+        <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#e5e5e5">
+                <tr>
+                  <td><table width="100%" border="0" align="left" cellpadding="0" cellspacing="1" class="data_list">
+                      <thead bgcolor="#F2F2F2">
+                        <th width="50" height="35" bgcolor="#F2F2F2"><div align="left" class="DH"><b>ID</b></div></th>
+						<th width="100"><div align="left" class="DH"><b>区服名称</b></div></th>
+                        <th width="100"><div align="left" class="DH"><b>区服IP</b></div></th>
+                        <th width="100"><div align="left" class="DH"><b>区服端口</b></div></th>
+                        <th width="100"><div align="left" class="DH"><b>GMT IP</b></div></th>
+                        <th width="100"><div align="left" class="DH"><b>GMT端口</b></div></th>
+                        <th width="90"><div align="left" class="DH"><b>游戏库地址</b></div></th>
+                        <th width="90"><div align="left" class="DH"><b>游戏库名称</b></div></th>
+                        <th width="90"><div align="left" class="DH"><b>日志库地址</b></div></th>
+                        <th width="90"><div align="left" class="DH"><b>日志库名称</b></div></th>
+                        <th width="130"><div align="left" class="DH"><b>备注说明</b></div></th>
+                        <th width="80"><div align="left" class="DH"><b>操作选项</b></div></th>
+                      </thead>
+                      <volist name="list" key="k" id="vo">
+                      <tr height="28" style="background-color:#FFF" onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#FFFFFF';">
+                        <td ><div align="left" class="server">{$vo.id}</div></td>
+                        <td ><div align="left" class="server">{$vo.name}</div></td>
+                        <td ><div align="left" class="server">{$vo.game_url}</div></td>
+                        <td ><div align="left" class="server">{$vo.game_port}</div></td>
+                        <td ><div align="left" class="server">{$vo.gmt_url}</div></td> 
+                        <td ><div align="left" class="server">{$vo.gmt_port}</div></td> 
+                        <td ><div align="left" class="server">{$vo.db_host}</div></td>
+                        <td ><div align="left" class="server">{$vo.db_name}</div></td>
+                        <td ><div align="left" class="server">{$vo.log_host}</div></td>
+                        <td ><div align="left" class="server">{$vo.log_name}</div></td>
+                        <td ><div align="left" class="server">{$vo.remark}</div></td>
+                        <td ><div align="left" class="server">[ <a href="index.php?m=Server&a=s_upd&id={$vo.id}">修改</a> ]&nbsp;[ <a href="index.php?m=Server&a=s_del&id={$vo.id}" onclick="return show()">删除</a> ]</div></td>
+                      </tr>
+                     </volist>
+                     <thead height="30">
+                       <th colspan="9" height="30"><div align="center" class="DH"><div class="green-black">{$page}</div></div></th>
+                     </thead>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

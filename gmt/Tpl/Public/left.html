@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页 - 左侧导航栏</title>
+<link href="__PUBLIC__/style/open_platform_wiki.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+</head>
+<body>
+<div style="width:200px; height:100px; text-align:center">
+<img style=" margin-top:20px;" src="__PUBLIC__/images/oss_05.png" width="128" height="58" alt=" "></div>
+<div class="layout_lm open_lib">
+
+    <div class="left_col">
+      <ul class="menu_level3"  id="menu_level3">
+        <ul class="menu_level3" id="menu_level3">
+            <!--GM类-->
+            <li>
+            <h4><a href="javascript:void(0);" onClick="return false;" class="current"><i class="ico ico_li"></i><img class="crent_img" src="__PUBLIC__/images/ico_03.png" width="15" height="15" alt=" "> {$Think.lang._GM_class_}<i class="ico ico_li"></i></a></h4>
+            <ul style="display: block;">
+              <li>
+                <h5><a href="__APP__?m=Playermanagement&a=index" target="mainFrame">{$Think.lang._GM_action_}<i class="ico ico_li"></i></a></h5>
+              </li>
+			    <!--新手指引开始-->
+              <li>
+                <h5 class="hassub"><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_hassub" title="点击展开"></i>{$Think.lang._Use_manual_}<i class="ico ico_li"></i></a></h5>
+                <ul style="display: none;">
+                  <li><a href="__APP__?m=About&a=beginnersGuide" target="mainFrame">{$Think.lang._Beginners_guide_}<i class="ico ico_li"></i></a></li>
+                  <li><a href="__APP__?m=About&a=commonProblems" target="mainFrame">{$Think.lang._Common_problems_}<i class="ico ico_li"></i></a></li>
+                  <li><a href="__APP__?m=About&a=versionIntroduction" target="mainFrame">{$Think.lang._Version_introduction_}<i class="ico ico_li"></i></a></li>
+                  <li><a href="__APP__?m=About&a=mattersNeedingAttention" target="mainFrame">{$Think.lang._Matters_needing_attention_}<i class="ico ico_li"></i></a></li>
+                </ul>
+              </li>
+              <!--新手指引结束-->
+			  
+              <li>
+                <h5 class="hassub"><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_hassub" title="点击展开"></i>{$Think.lang._UserGM}<i class="ico ico_li"></i></a></h5>
+                <ul style="display: none;">
+                  <li><a href="__APP__?m=Onlineplayer&a=index" target="mainFrame">{$Think.lang._update}<i class="ico ico_li"></i></a></li>
+                </ul>
+              </li>	
+
+			  <li>
+                <h5 class="hassub"><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_hassub" title="点击展开"></i>{$Think.lang._Mail}<i class="ico ico_li"></i></a></h5>
+                <ul style="display: none;">
+                  <li><a href="__APP__?m=Gmemail&a=index" target="mainFrame">{$Think.lang._SystemMail}<i class="ico ico_li"></i></a></li>
+                </ul>
+              </li>					  
+			  
+            
+            </ul>
+          </li>
+          </if>
+          <!--GM类结束-->
+          <!--用户类-->
+          <if condition="$_SESSION['_ACCESS_LIST']['User'] eq 3"> 
+          <li>
+            <h4><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_li"></i><img class="crent_img" src="__PUBLIC__/images/ico_06.png" width="15" height="15" alt=" "> {$Think.lang._User_class_}<i class="ico ico_li"></i></a></h4>
+            <ul style="display: none;">
+			<!--
+               <if condition="$_SESSION['_ACCESS_LIST']['UserGM'] eq 31 and $_SESSION['_ACCESS_LIST']['User'] eq 3">
+              <li>
+                <h5 class="hassub"><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_hassub" title="点击展开"></i>{$Think.lang.UserGM}<i class="ico ico_li"></i></a></h5>
+                <ul style="display: none;">
+                  <if></if>
+                  <if condition="$_SESSION['_ACCESS_LIST']['update'] eq 311 and $_SESSION['_ACCESS_LIST']['UserGM'] eq 31">
+                  <li><a href="index.php?m=User&a=user_gm" target="mainFrame">{$Think.lang.update}<i class="ico ico_li"></i></a></li>
+                  </if>
+                </ul>
+              </li>
+              </if>    -->       
+            </ul>
+			
+          </li>
+          </if>
+		  
+          <!--用户类结束-->
+          
+          <!--账号类-->
+          <if condition="$_SESSION['_ACCESS_LIST']['Account'] eq 4">
+          <li>
+            <h4><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_li"></i><img class="crent_img" src="__PUBLIC__/images/ico_09.png" width="15" height="15" alt=" "> {$Think.lang._Account_class_}<i class="ico ico_li"></i></a></h4>
+            <ul style="display: none;">
+              <if condition="$_SESSION['_ACCESS_LIST']['Account_base'] eq 41 and $_SESSION['_ACCESS_LIST']['Account'] eq 4">
+              <li>
+                <h5 class="hassub"><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_hassub" title="点击展开"></i>{$Think.lang._User_base_}<i class="ico ico_li"></i></a></h5>
+                <ul style="display: none;">
+                  <if></if>
+                  <if condition="$_SESSION['_ACCESS_LIST']['user_list'] eq 411 and $_SESSION['_ACCESS_LIST']['Account_base'] eq 41">
+                  <li><a href="index.php?m=User&a=index"  target="mainFrame">{$Think.lang._User_lists_}<i class="ico ico_li"></i></a></li>
+                  </if>
+                  <if condition="$_SESSION['_ACCESS_LIST']['add_user'] eq 412 and $_SESSION['_ACCESS_LIST']['Account_base'] eq 41">
+                  <li><a href="index.php?m=User&a=add_user" target="mainFrame">{$Think.lang._User_add_}<i class="ico ico_li"></i></a></li>
+                  </if>
+                  <if condition="$_SESSION['_ACCESS_LIST']['showlog'] eq 413 and $_SESSION['_ACCESS_LIST']['Account_base'] eq 41">
+                  <li><a href="index.php?m=User&a=showlog" target="mainFrame">{$Think.lang._User_showlog_}<i class="ico ico_li"></i></a></li>
+                  </if>
+                </ul>
+              </li>
+              </if>
+            </ul>
+          </li>
+          </if>
+          <!--账号类-->
+          
+          <!--权限类-->
+          <if condition="$_SESSION['_ACCESS_LIST']['Role'] eq 5">
+          <li>
+            <h4><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_li"></i><img class="crent_img" src="__PUBLIC__/images/ico_11.png" width="15" height="15" alt=" "> {$Think.lang._Role_class_}<i class="ico ico_li"></i></a></h4>
+            <ul style="display: none;">
+              <if condition="$_SESSION['_ACCESS_LIST']['Role_base'] eq 51 and $_SESSION['_ACCESS_LIST']['Role'] eq 5">
+              <li>
+                <h5 class="hassub"><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_hassub" title="点击展开"></i>{$Think.lang._Role_base_}<i class="ico ico_li"></i></a></h5>
+                <ul style="display: none;">
+                  <if condition="$_SESSION['_ACCESS_LIST']['user_group'] eq 511 and $_SESSION['_ACCESS_LIST']['Role_base'] eq 51">
+                  <li><a href="index.php?m=User&a=user_group" target="mainFrame">{$Think.lang._Role_group_list_}<i class="ico ico_li"></i></a></li>
+                  </if>
+                  <if condition="$_SESSION['_ACCESS_LIST']['add_usergroup'] eq 512 and $_SESSION['_ACCESS_LIST']['Role_base'] eq 51">
+                  <li><a href="index.php?m=User&a=add_usergroup" target="mainFrame">{$Think.lang._Role_add_group_}<i class="ico ico_li"></i></a></li>
+                  </if>
+                </ul>
+              </li>
+              </if>
+            </ul>
+          </li>
+          </if>
+          <!--权限类-->
+          
+          <!--服务器类-->
+          <if condition="$_SESSION['_ACCESS_LIST']['Server'] eq 7">
+          <li>
+            <h4><a href="javascript:void(0);" onClick="return false;"><i class="ico ico_li"></i><img class="crent_img" src="__PUBLIC__/images/ico_12.png" width="15" height="15" alt=" "> {$Think.lang._Server_class_}<i class="ico ico_li"></i></a></h4>
+            <ul style="display: none;">
+              <if condition="$_SESSION['_ACCESS_LIST']['s_list'] eq 711 and $_SESSION['_ACCESS_LIST']['Ser_base'] eq 71">
+              <li>
+                <h5><a href="index.php?m=Server&a=s_list" target="mainFrame">{$Think.lang._Server_lists_}<i class="ico ico_li"></i></a></h5>
+              </li>
+              </if>
+              <if condition="$_SESSION['_ACCESS_LIST']['s_add'] eq 712 and $_SESSION['_ACCESS_LIST']['Ser_base'] eq 71"> 
+              <li>
+                <h5><a href="index.php?m=Server&a=s_add" target="mainFrame">{$Think.lang._Server_add_}<i class="ico ico_li"></i></a></h5>
+              </li>
+              </if>
+              <li>
+                <h5><a href="index.php?m=Server&a=notice" target="mainFrame">服务器公告<i class="ico ico_li"></i></a></h5>
+              </li>
+            </ul>
+          </li>
+          </if>
+          <!--服务器类-->
+
+		 
+        </ul>
+      </ul>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/qzfl_lite.js" charset="utf-8"></script>
+<script type="text/javascript">
+	function clickMenu(evt){
+		var target = QZFL.event.getTarget(evt);
+		while(target != menu){
+			var nextEl = QZFL.dom.getNextSibling(target);
+			if(target.nodeName == "H5" && nextEl){
+				nextEl.style.display = (nextEl.style.display == 'block' ? 'none' : 'block');
+				if(QZFL.css.hasClassName(target,'subopen')){
+					QZFL.css.removeClassName(target,'subopen');
+					target.getElementsByTagName('i')[0].title = "点击展开";
+				}else if(QZFL.css.hasClassName(target,'hassub')){
+					QZFL.css.addClassName(target,'subopen');
+					target.getElementsByTagName('i')[0].title = "点击收缩";
+				}
+				break;
+			}else if(target.nodeName == "H4" && nextEl){
+				nextEl.style.display = (nextEl.style.display == 'block' ? 'none' : 'block');
+				var anchor = QZFL.dom.getFirstChild(target);
+				anchor.className = (anchor.className == 'current' ? '' : 'current');
+				break;
+			}else if(target.nodeName == "H4" || target.nodeName == "H5"){
+				break;	
+			}else{
+				target = target.parentNode;
+			}
+		}
+	}
+	var menu = QZFL.dom.get('menu_level3');
+	QZFL.event.on(menu,'click',clickMenu);
+	
+	//默认展开二级
+	function _fireMouseEvents( elem , type , params ){
+		if( elem.dispatchEvent ){
+			var evt = document.createEvent("MouseEvents");
+			var p = params || {};
+			evt.initMouseEvent( type , p.canBubble, p.cancel, null, p.detail, p.screenX, p.screenY, p.clientX, p.clientY, p.ctrl, p.alt, p.shift, p.meta, null, null );
+			return elem.dispatchEvent( evt );
+		}else if( elem.fireEvent ){
+			return elem.fireEvent( "on"+type );
+		}
+		return elem[type]();
+	}
+	var isIndex = $e('h4 a').get(0).hasClass('current'); // 是否选择的是资料库首页，这里依赖页面上的'首页'节点是否被选中(current)
+	//如果是首页，默认展开所有的一级分类，否则则不需要展开其他一级分类
+	/*isIndex && $e('h4 a').each(function(target, index){
+		if( "current" != this.className && -1 == this.href.indexOf("http") ){
+			_fireMouseEvents( this , "click" , { canBubble : true } );
+		}
+	});*/
+	wikiConfig = {
+		maxcomlength : 200
+	}
+
+	function checkSum(evt,ispropertychange){
+		if(ispropertychange){
+			var evt  = QZFL.event.getEvent(evt);
+			if( !(evt.propertyName == "value") ){
+				return;
+			}
+		}
+		if(this.value && this.value.length > wikiConfig.maxcomlength){
+			this.value = this.value.substring(0,wikiConfig.maxcomlength);
+		}
+	}
+	var commentText = $e("#commentText").eq(0);
+	if(commentText){
+		if("oninput" in commentText){
+			$e("#commentText").bind("input",checkSum,[false]);
+		}else if("onpropertychange" in commentText){
+			$e("#commentText").bind("propertychange", checkSum, [true]);
+		}
+		V.widget.placeHolder.bind(commentText, "您可以在这里输入更多意见和建议....（限200字以内的文本）", true);
+	}
+</script>
+    
+    
+    
+</body>
+</html>

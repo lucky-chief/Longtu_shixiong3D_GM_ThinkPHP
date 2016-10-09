@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>业务运营支撑系统</title>
+<link href="__PUBLIC__/style/css.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/js/prototype.js" /></script>
+<script src="__PUBLIC__/js/Base.js" /></script>
+<script type="text/javascript">
+
+function fleshVerify(type){ 
+//重载验证码
+var timenow = new Date().getTime();
+if (type)
+{
+$('verifyImg').src= '__APP__?m=Public&a=verify&adv&1&'+timenow;
+}else{
+$('verifyImg').src= '__APP__?m=Public&a=verify&'+timenow;
+}
+
+}
+</script>
+</head>
+
+<body>
+
+		<div class="centerDiv">
+
+			<div class="login_left">
+            	<img src="__PUBLIC__/images/gmt_log.png" width="334" height="72" alt=" " />
+                <p><span class="log_span">GMT登录系统</span>
+                	<!--<label>
+                      <select name="select" id="select">
+                        <option value="OSS">OSS</option>
+                        <option value="CRM">CRM</option>
+                        <option value="Building">Building</option>
+                        <option value="CMS">CMS</option>
+                      </select>
+                    </label> -->  
+                    <!--<DIV class=select>
+                    	<SELECT id=c style="DISPLAY: none" name=c>
+                          <option value="OSS" selected>OSS</option>
+                        <option value="CRM">CRM</option>
+                        <option value="Building">Building</option>
+                        <option value="CMS">CMS</option>
+                        </SELECT> 
+          			</DIV>-->
+                </p>
+            </div>
+			<div class="login_mid">
+                <img src="__PUBLIC__/images/login_line.gif" width="6" height="340" />
+            </div>
+            <form name="login" id="form1" method="post" action="__APP__?m=Public&a=checkLogin">
+            <div class="login_right">
+            	<p><span>用户名：</span><input name="username" type="text" style="font-size:18px; font-weight:bold"/></p>
+            <p><span>密码：</span><input name="password" type="password" /></p>
+                <p><span>验证码：</span><input class="login_y" name="verify" type="text" /><img id="verifyImg" SRC="__APP__?m=Public&a=verify" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></p>
+                <p><input class="button" type="image" name="imageField" id="imageField" src="__PUBLIC__/images/login_btn.gif" /></p>
+            </div>
+            </form>
+		</div>
+        <div class="hiddenDiv"></div>
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>玩家操作</title>
+<link href="__PUBLIC__/style/main.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/style/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+//在线玩家操作
+//增加经验
+$(document).ready(function(){
+	$('#add_exp').click(function(){
+		var playerName = $('#playerName').val();	
+		if(playerName==""){
+		    alert("角色名称不能为空！");
+			return false;
+		  }
+		var exp_num = $('#exp_num').val();
+        server=$('#serverlist').val();
+		$.post("?m=Onlineplayer&a=expAdd",{"exp_num":exp_num,"playerName":playerName,"action":"expAdd","server":server},function(data){
+				  alert(data);	  
+				 }),"json"})					   						   
+})
+//增加经济属性
+$(document).ready(function(){
+	$('#add_money').click(function(){
+		var playerName = $('#playerName').val();	
+		if(playerName==""){
+		    alert("角色名称不能为空！");
+			return false;
+		  }
+		var addMoney = $('#addMoney').val();
+		if(addMoney==""){
+			alert("增加数目不能为空！");
+			return false;
+		 }
+		var moneyType = $('#moneyType').val();
+        server=$('#serverlist').val();
+		$.post("?m=Onlineplayer&a=addMoney",{"addMoney":addMoney,"moneyType":moneyType,"playerName":playerName,"action":"addMoney","server":server},function(data){
+				  alert(data);	  
+				 }),"json"})					   						   
+})
+//道具添加模块
+$(document).ready(function(){
+	$('#itemAdd').click(function(){
+		var playerName = $('#playerName').val();	
+		if(playerName==""){
+		    alert("角色名称不能为空！");
+			return false;
+		  }
+		var itemId = $('#itemId').val();
+		if(itemId==""){
+			alert("道具ID不能为空！");
+			return false;
+		 }
+		 var itemNum = $('#itemNum').val();
+		if(itemNum==""){
+			alert("道具数量不能为空！");
+			return false;
+		 }
+        server=$('#serverlist').val();
+       $.post("?m=Onlineplayer&a=itemAdd",{"itemId":itemId,"itemNum":itemNum,"playerName":playerName,"action":"itemAdd","server":server},function(data){
+				  alert(data);	  
+				 }),"json"})	
+						   						   
+})
+//设置玩家等级
+$(document).ready(function(){
+	$('#upLevel').click(function(){
+		var playerName = $('#playerName').val();	
+		if(playerName==""){
+		    alert("角色名称不能为空！");
+			return false;
+		  }
+		var level = $('#level').val();
+		if(level==""){
+			alert("设置等级不能为空！");
+			return false;
+		 }
+        server=$('#serverlist').val();
+       $.post("?m=Onlineplayer&a=upLevel",{"level":level,"playerName":playerName,"action":"upLevel","server":server},function(data){
+				  alert(data);	  
+				 }),"json"})	
+						   						   
+})
+//充值模块
+$(document).ready(function(){
+	$('#exePay').click(function(){
+		var playerName = $('#playerName').val();	
+		if(playerName==""){
+		    alert("角色名称不能为空！");
+			return false;
+		  }
+		var payNum = $('#payNum').val();
+		if(payNum==""){
+			alert("充值金额不能为空！");
+			return false;
+		 }
+        server=$('#serverlist').val();
+       $.post("?m=Onlineplayer&a=exePay",{"payNum":payNum,"playerName":playerName,"action":"exePay","server":server},function(data){
+				  alert(data);	  
+				 }),"json"})	
+						   						   
+})
+</script>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+  
+</table>
+
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">玩家操作</div></td>
+      </tr>
+      <tr>
+        <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+               
+                 <tr>
+                  <td align="left" valign="top"><table border="0" cellpadding="0" cellspacing="0" class="fj_sm1">
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="0" class="fj_mr">
+                          <tr>
+                              <td width="92" height="35"><div align="right">选择区服</div></td>
+                              <td width="10">&nbsp;</td>
+                              <td colspan="2"><div align="left">
+                                <select id="serverlist" class="s_select">
+                                  <volist name="list" id="vo">
+                                    <option value="{$vo.id}">{$vo.name}</option>
+                                  </volist>
+                                </select>
+                              </div></td>
+                          </tr>
+
+                          <tr>
+                            <td width="100" height="35"><div align="right">角色名称</div></td>
+                            <td width="9">&nbsp;</td>
+                            <td width="217"><div align="left">
+                                <input type="text" name="playerName" id="playerName"  class="text_name"/>
+                            </div></td>
+                            <td width="604"><div align="left"></div></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+
+                <tr>
+                  <td align="left" valign="top"><table border="0" cellpadding="0" cellspacing="0" class="fj_sm2">
+
+                    <tr>
+                      <td height="40" class="fj_sm_title"><div align="left">增加玩家经验</div></td>
+                    </tr>
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="0" class="fj_mr">
+                          <tr>
+                            <td width="100" height="35"><div align="right">增加经验</div></td>
+                            <td width="9">&nbsp;</td>
+                            <td width="217"><div align="left">
+                                <input type="text" name="exp_num" id="exp_num"  class="text_name"/>
+                            </div></td>
+                            <td width="604"><div align="left"></div></td>
+                          </tr>
+                          <tr>
+                            <td height="35" colspan="4"><div align="left" class="r_m_20">
+                                <input type="button" name="add_exp" id="add_exp" value="增加" class="btn fj_ml" />
+                            </div></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+				
+				<tr>
+                  <td align="left" valign="top"><table border="0" cellpadding="0" cellspacing="0" class="fj_sm2">
+
+                    <tr>
+                      <td height="40" class="fj_sm_title"><div align="left">设置玩家等级</div></td>
+                    </tr>
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="0" class="fj_mr">
+                          <tr>
+                            <td width="100" height="35"><div align="right">等级</div></td>
+                            <td width="9">&nbsp;</td>
+                            <td width="217"><div align="left">
+                                <input type="text" name="level" id="level"  class="text_name"/>
+                            </div></td>
+                            <td width="604"><div align="left"></div></td>
+                          </tr>
+                          <tr>
+                            <td height="35" colspan="4"><div align="left" class="r_m_20">
+                                <input type="button" name="upLevel" id="upLevel" value="升级" class="btn fj_ml" />
+                            </div></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+				
+                <tr>
+                  <td align="left"><table border="0" cellpadding="0" cellspacing="0" class="fj_sm">
+                    <tr>
+                      <td height="40" class="fj_sm_title"><div align="left">增加经济属性</div></td>
+                    </tr>
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="0" class="fj_mr">
+                          <tr>
+                            <td height="35"><div align="right">属性类型</div></td>
+                            <td>&nbsp;</td>
+                            <td><div align="left">
+                              <select name="moneyType" id="moneyType" class="s_select">
+                                <option value="0">铜币</option>
+                                <option value="1">钻石</option>
+                               </select>
+                            </div></td>
+                            <td>&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td width="100" height="35"><div align="right">增加数额</div></td>
+                            <td width="9">&nbsp;</td>
+                            <td width="217"><div align="left">
+                                <input type="text" name="addMoney" id="addMoney"  class="text_name"/>
+                            </div></td>
+                            <td width="604"><div align="left"></div></td>
+                          </tr>
+                          <tr>
+                            <td height="35" colspan="4"><div align="left" class="r_m_20">
+                                <input type="button" name="add_money" id="add_money" value="增加" class="btn fj_ml" />
+                            </div></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+				
+				 <tr>
+                  <td align="left"><table border="0" cellpadding="0" cellspacing="0" class="fj_sm">
+                    <tr>
+                      <td height="40" class="fj_sm_title"><div align="left">添加道具</div></td>
+                    </tr>
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="0" class="fj_mr">
+                          
+                          <tr>
+                            <td width="100" height="35"><div align="right">道具ID</div></td>
+                            <td width="9">&nbsp;</td>
+                            <td width="217"><div align="left">
+                                <input type="text" name="itemId" id="itemId"  class="text_name"/>
+                            </div></td>
+                            <td width="604"><div align="left">(单一道具 1200,批量添加：1200|1201,连续ID  1200-1300)</div></td>
+							
+                          </tr>
+						   <tr>
+                            <td width="100" height="35"><div align="right">道具数量</div></td>
+                            <td width="9">&nbsp;</td>
+                            <td width="217"><div align="left">
+                                <input type="text" name="itemNum" id="itemNum"  class="text_name"/>
+                            </div></td>
+                            <td width="604"><div align="left"></div></td>
+                          </tr>
+                          <tr>
+                            <td height="35" colspan="4"><div align="left" class="r_m_20">
+                                <input type="button" name="itemAdd" id="itemAdd" value="增加" class="btn fj_ml" />
+                            </div></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+				
+                <tr>
+                  <td align="left"><table border="0" cellpadding="0" cellspacing="0" class="fj_sm">
+                    <tr>
+                      <td height="40" class="fj_sm_title"><div align="left">充值</div></td>
+                    </tr>
+                    <tr>
+                      <td><table border="0" cellspacing="0" cellpadding="0" class="fj_mr">
+                          
+                          <tr>
+                            <td width="100" height="35"><div align="right">充值金额</div></td>
+                            <td width="9">&nbsp;</td>
+                            <td width="217"><div align="left">
+                                <input type="text" name="payNum" id="payNum"  class="text_name"/>
+                            </div></td>
+                            <td width="604"><div align="left"></div></td>
+                          </tr>
+                          <tr>
+                            <td height="35" colspan="4"><div align="left" class="r_m_20">
+                                <input type="button" name="exePay" id="exePay" value="增加" class="btn fj_ml" />
+                            </div></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                  </table></td>
+                </tr>
+                
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

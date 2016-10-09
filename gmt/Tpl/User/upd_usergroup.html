@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加管理员</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/main.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/style/css.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#upd_group').click(function(){
+	   var groupname = $('#groupname').val();
+	   var role      = $('#role').val();
+	   if(groupname==""){
+		   alert("组名称不能为空");
+		   return false;
+		  }
+	   if(role==""){
+		   alert("权限设置不能为空");
+		   return false;
+		  }
+   })	
+  //树形菜单的展开与关闭
+  $('.first').click(function(){	  
+	  var cc=$(this).attr('id');	
+	  var secondid='second_'+cc;	 
+	  var show = $("."+secondid).css('display');
+	  if(show == 'none'){
+	     $("."+secondid).show();
+	   }else{
+		 $("."+secondid).hide();
+		 //$("."+thirdid).hide();
+		 //$("."+fourthid).hide();
+		$('.s_'+cc).hide();
+	   }
+	});
+
+   $('.second').click(function(){	  
+	  var se=$(this).attr('id');
+	  var thirdid='third_'+se;	
+	  var show = $("."+thirdid).css('display');
+	  if(show == 'none'){
+	    $("."+thirdid).show();	
+	  }else{
+		$("."+thirdid).hide();
+		$('.s_'+se).hide();
+	  }
+	});
+   
+    $('.third').click(function(){	  
+	  var cc=$(this).attr('id');
+	  var fourthid='fourth_'+cc;	
+	  var show = $("."+fourthid).css('display');
+	  if(show == 'none'){
+	    $("."+fourthid).show();
+	  }else{
+		$("."+fourthid).hide();  
+	  }
+	});
+	
+})
+</script>
+</head>
+
+<body>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="r_m20">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+        <td height="20" class="r_fonta">欢迎回来，{$_SESSION['loginUserName']}</td>
+      </tr>
+      <tr>
+        <td height="10"></td>
+      </tr>
+      <tr>
+        <td height="20">
+        <div style="float:left; color:#EC724F">运营商：中清龙图</div>
+        <div style="float:left; margin-left:10px;">所在游戏：天龙诀</div>
+        <div class="r_fontb" style="float:left; margin-left:10px;">请遵守职业道德注意数据保密，不要泄露</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="center">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="r_m_20 s_m_font">
+      <tr>
+        <td height="37" background="__PUBLIC__/images/r_bj.gif" class="r_br r_f"><div align="left">分组修改信息</div></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="r_br r_pa">
+            <tr>
+              <td>
+              <form name="form1" action="__APP__?m=User&a=upd_usergroup" method="post">
+              <input type="hidden" name="groupid" value="{$vtt.id}" />
+              <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td align="left"><table width="900" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td width="70" height="35"><div align="right">组名称</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td width="820"><div align="left"><input type="text" name="groupname" id="groupname"  class="text_name" value="{$vtt.name}"/></div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right">上级分组</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td width="820">
+                      <div align="left">
+                        <select name="pid" id="pid" style="width:90px;">
+                        <option value="0">无</option>
+                        <volist name="value" id="val">
+                          <option value="{$val.pid}">{$val.name}</option>
+                        </volist>
+                        </select>
+                      </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right">状态</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <select name="status" id="role">
+                          <option value="1"  <if condition='$vtt.status eq 1'> selected="selected"</if> >开启</option>
+                          <option value="0"  <if condition='$vtt.status eq 0'> selected="selected"</if>>关闭</option>
+                        </select>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td width="70" height="35"><div align="right">备注</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                        <textarea cols="70" rows="5" name="remark" id="remark" >{$vtt.remark}</textarea>
+                      </div></td>
+                    </tr>
+                    <tr height="30">
+                      <td width="70" height="35"><div align="right" style="color:red">权限设置</div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <volist name="list" id="vo">
+                          <div style="float:left">
+                          <input type="checkbox" name="role[]" id="role" value="{$vo.id}" <if condition='$vo.acc_id eq 1'>checked="checked"</if>/>
+                          </div>
+                          <div style=" float:left;margin-left:5px;">{$vo.title}<span style="color:red; padding-left:5px;">
+                          [&nbsp;在分权限时这个为必选否则不能登录&nbsp;]</span></div>
+                          </volist>
+                      </div></td>
+                    </tr>
+                    <volist name="list1" id="vt">
+                    <tr>
+                      <td width="70" height="35"><div align="right" style="color:red"></div></td>
+                      <td width="10">&nbsp;</td>
+                      <td><div align="left">
+                          <div id="{$vt.id}" class="first" style="float:left;"><a style="cursor:pointer;"><img src="__PUBLIC__/images/tree.jpg"/></a></div>
+                          <div style="float:left"><input type="checkbox" name="role[]" id="role" value="{$vt.id}" <if condition='$vt.acc_id eq 1'>checked="checked"</if>/></div>
+                          </div>
+                          <div style=" float:left;margin-left:5px;">{$vt.title}<span style="color:red; padding-left:5px;">
+                          [&nbsp;一级目录&nbsp;]</span></div>  
+                          </div>
+                          <volist name="vt.class2" id="vs">
+                          <tr height="30" id="{$vs.id}" class="second_{$vt.id}" style="display:none">
+                            <td></td>
+                            <td></td>
+                            <td>
+                            <div id="{$vs.id}" class="second" style="float:left;margin-left:30px;"><a style="cursor:pointer;"><img src="__PUBLIC__/images/tree.jpg"/></a></div>
+                            <div style="float:left;">
+                            <div style="float:left;"><input type="checkbox" name="role[]" id="role" value="{$vs.id}" <if condition='$vs.acc_id eq 1'>checked="checked"</if>/></div>
+                            </div>
+                            <div style="float:left;margin-left:5px;">{$vs.title}<span style="color:blue;padding-left:5px;">
+                          [&nbsp;二级目录&nbsp;]</span></div>  
+                          </div></td>
+                          </tr>
+                          <volist name="vs.class3" id="vc">
+                          <tr height="30" id="{$vc.id}" class="third_{$vs.id} s_{$vt.id}" style="display:none">
+                            <td></td>
+                            <td></td>
+                            <td>
+                            <notempty name="vc['class4']">
+                            <div id="{$vc.id}" class="third" style="float:left;margin-left:50px;"><a style="cursor:pointer;"><img src="__PUBLIC__/images/tree.jpg"/></a>
+                            <div style="float:left;"></div>
+                            <else/>
+                            <div id="{$vc.id}" class="third" style="float:left;margin-left:65px;">
+                            <div style="float:left;"></div>
+                            </notempty>           
+                            <input type="checkbox" name="role[]" id="role" value="{$vc.id}" <if condition='$vc.acc_id eq 1'>checked="checked"</if>/>
+                            </div>
+                            <div style="float:left;margin-left:5px;">{$vc.title}<span style="color:green;padding-left:5px;">
+                          [&nbsp;三级目录&nbsp;]</span></div>  
+                          </div></td>
+                          </tr>
+                          
+                          <foreach name="vc['class4']" item="vd">
+                          <tr height="30" id="{$vd.id}" class="fourth_{$vc.id} s_{$vt.id} s_{$vs.id}" style="display:none">
+                            <td></td>
+                            <td></td>
+                            <td>                    
+                            <div id="{$vd.id}" class="fourth" style="float:left;"></div>                         
+                            <div style="float:left; margin-left:90px;">
+                            <input type="checkbox" name="role[]" id="role" value="{$vd.id}" <if condition='$vd.acc_id eq 1'>checked="checked"</if>/>
+                            </div>
+                            <div style="float:left;margin-left:5px;">{$vd.title}<span style="color:#CC6633;padding-left:5px;">
+                          [&nbsp;四级目录&nbsp;]</span></div>  
+                          </div></td>
+                          </tr>
+                          </foreach>
+                          </volist>
+                          </volist>
+                          
+                      </td>
+                    </tr>
+                    </volist>
+                    <tr>
+                        <td width="70" height="35"></td> 
+                      <td width="10">&nbsp;</td>
+                      <td height="35"><div align="left" class="r_m_20">
+                          <input type="submit"  id="upd_group" value="修改" class="btn fj_ml" />
+                      </div></td>
+                    </tr>
+                  </table></form></td>
+                </tr>
+                
+                
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>
